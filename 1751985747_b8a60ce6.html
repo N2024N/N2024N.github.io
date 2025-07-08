@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+    <html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>预览: 安闻集团考勤管理规定.docx</title>
+        <!-- 使用HTTPS CDN链接 -->
+        <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.4.120/build/pdf.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.17/mammoth.browser.min.js"></script>
+        <!-- 内联所有CSS避免外部请求 -->
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background: #f0f2f5;
+                color: #333;
+                line-height: 1.6;
+                padding: 20px;
+            }
+            /* [保留所有其他CSS样式] */
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <!-- [保留原有HTML结构] -->
+        </div>
+        
+        <script>
+            // 将文件内容转换为Base64数据URL
+            async function fetchAsDataURL(url) {
+                try {
+                    const response = await fetch(url);
+                    const blob = await response.blob();
+                    return new Promise((resolve) => {
+                        const reader = new FileReader();
+                        reader.onloadend = () => resolve(reader.result);
+                        reader.readAsDataURL(blob);
+                    });
+                } catch (error) {
+                    console.error('获取文件失败:', error);
+                    throw error;
+                }
+            }
+            
+            // 修改渲染函数使用Data URL
+            async function renderFile() {
+                try {
+                    const dataUrl = await fetchAsDataURL("https://your-domain.com/files/eb6c148e-d877-4aca-83a4-f1e188a0f831/file-preview?timestamp=1751985747&nonce=db786efa1d39a43f6af0301fe776356a&sign=8a6k3BRS8_I6l4T91LNm6I1sfqcZjsn5RRQDHLo5Jwg=");
+                    
+                    // 根据MIME类型处理
+                    if ("application/vnd.openxmlformats-officedocument.wordprocessingml.document" === 'application/pdf') {
+                        // PDF处理逻辑
+                        const pdf = await pdfjsLib.getDocument(dataUrl).promise;
+                        const page = await pdf.getPage(1);
+                        // [保留原有PDF渲染逻辑]
+                    } 
+                    else if ("application/vnd.openxmlformats-officedocument.wordprocessingml.document".includes('wordprocessingml.document')) {
+                        // Word文档处理
+                        const result = await mammoth.extractRawText({ 
+                            arrayBuffer: await (await fetch(dataUrl)).arrayBuffer() 
+                        });
+                        document.getElementById('viewer').innerHTML = result.value;
+                    }
+                    // [其他文件类型处理逻辑]
+                    
+                } catch (error) {
+                    showError('渲染失败: ' + error.message);
+                }
+            }
+            
+            // [保留其他JavaScript函数]
+            
+            // 修改初始化逻辑
+            document.addEventListener('DOMContentLoaded', function() {
+                // 先尝试直接使用Data URL方式加载
+                renderFile().catch(() => {
+                    // 如果失败，回退到原始URL方式
+                    console.log('回退到原始URL加载方式');
+                    renderPreview();
+                });
+            });
+        </script>
+    </body>
+    </html>
