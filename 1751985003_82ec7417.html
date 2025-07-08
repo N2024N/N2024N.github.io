@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+    <html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>预览: 安闻集团考勤管理规定.docx</title>
+        <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.4.120/build/pdf.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.17/mammoth.browser.min.js"></script>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background: #f0f2f5;
+                color: #333;
+                line-height: 1.6;
+                padding: 20px;
+            }
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                background: white;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                overflow: hidden;
+            }
+            header {
+                background: #2c3e50;
+                color: white;
+                padding: 15px 20px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .preview-area {
+                padding: 20px;
+                min-height: 80vh;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            #viewer {
+                width: 100%;
+                max-width: 900px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                overflow: hidden;
+                box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            }
+            .loading {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                height: 400px;
+            }
+            .spinner {
+                border: 5px solid #f3f3f3;
+                border-top: 5px solid #3498db;
+                border-radius: 50%;
+                width: 50px;
+                height: 50px;
+                animation: spin 2s linear infinite;
+                margin-bottom: 20px;
+            }
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+            .error {
+                color: #e74c3c;
+                padding: 20px;
+                text-align: center;
+            }
+            .actions {
+                margin-top: 20px;
+                display: flex;
+                gap: 10px;
+            }
+            button {
+                background: #3498db;
+                color: white;
+                border: none;
+                padding: 10px 15px;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background 0.3s;
+            }
+            button:hover {
+                background: #2980b9;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <h1>预览: 安闻集团考勤管理规定.docx</h1>
+                <div class="actions">
+                    <button onclick="downloadFile()">下载文件</button>
+                </div>
+            </header>
+            
+            <div class="preview-area">
+                <div id="viewer">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        <p>正在加载文档预览...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <script>
+            // 获取文件URL和MIME类型
+            const fileUrl = "http://123.60.219.148/files/eb6c148e-d877-4aca-83a4-f1e188a0f831/file-preview?timestamp=1751985003&nonce=a1302035368ec604a5d7c60308c2b44b&sign=nroPSpSO49gpoWIu7yjNluIBAE7NpDdT7tflvh80IVw=";
+            const mimeType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+            
+            // 初始化PDF.js
+            pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.4.120/build/pdf.worker.min.js';
+            
+            // 根据文件类型渲染预览
+            function renderPreview() {
+                // 根据MIME类型选择渲染方式
+                if (mimeType === 'application/pdf') {
+                    renderPDF();
+                } else if (mimeType.includes('wordprocessingml.document') || 
+                           mimeType.includes('msword') || 
+                           mimeType.includes('opendocument.text')) {
+                    renderWordDocument();
+                } else if (mimeType.includes('spreadsheetml') || 
+                          mimeType.includes('msexcel') || 
+                          mimeType.includes('opendocument.spreadsheet')) {
+                    renderExcelDocument();
+                } else if (mimeType.includes('presentationml') || 
+                           mimeType.includes('mspowerpoint') || 
+                           mimeType.includes('opendocument.presentation')) {
+                    renderPowerPointDocument();
+                } else if (mimeType.startsWith('image/')) {
+                    renderImage();
+                } else if (mimeType.startsWith('text/')) {
+                    renderText();
+                } else {
+                    showError('不支持预览此文件类型: ' + mimeType);
+                }
+            }
+            
+            // 渲染PDF文档
+            async function renderPDF() {
+                try {
+                    const loadingTask = pdfjsLib.getDocument(fileUrl);
+                    const pdf = await loadingTask.promise;
+                    const page = await pdf.getPage(1);
+                    
+                    const scale = 1.5;
+                    const viewport = page.getViewport({ scale });
+                    
+                    const canvas = document.createElement('canvas');
+                    const context = canvas.getContext('2d');
+                    canvas.height = viewport.height;
+                    canvas.width = viewport.width;
+                    
+                    const renderContext = {
+                        canvasContext: context,
+                        viewport: viewport
+                    };
+                    
+                    await page.render(renderContext).promise;
+                    
+                    // 显示第一页预览
+                    document.getElementById('viewer').innerHTML = '';
+                    document.getElementById('viewer').appendChild(canvas);
+                    
+                    // 添加分页指示器
+                    const pageInfo = document.createElement('p');
+                    pageInfo.textContent = '预览第1页 (共' + pdf.numPages + '页)';
+                    pageInfo.style.textAlign = 'center';
+                    pageInfo.style.marginTop = '10px';
+                    pageInfo.style.color = '#666';
+                    document.getElementById('viewer').appendChild(pageInfo);
+                } catch (error) {
+                    showError('无法加载PDF文档: ' + error.message);
+                }
+            }
+            
+            // 渲染Word文档
+            async function renderWordDocument() {
+                try {
+                    const response = await fetch(fileUrl);
+                    const arrayBuffer = await response.arrayBuffer();
+                    
+                    const result = await mammoth.convertToHtml({ arrayBuffer });
+                    document.getElementById('viewer').innerHTML = result.value;
+                    
+                    // 添加文档样式
+                    const style = document.createElement('style');
+                    style.textContent = `
+                        body { 
+                            padding: 20px; 
+                            font-family: Arial, sans-serif; 
+                            line-height: 1.6;
+                        }
+                        h1, h2, h3 { margin: 15px 0 10px; }
+                        p { margin: 10px 0; }
+                        table { border-collapse: collapse; margin: 15px 0; }
+                        td, th { border: 1px solid #ddd; padding: 8px; }
+                    `;
+                    document.head.appendChild(style);
+                } catch (error) {
+                    showError('无法转换Word文档: ' + error.message);
+                }
+            }
+            
+            // 渲染Excel文档（简化版）
+            async function renderExcelDocument() {
+                try {
+                    const response = await fetch(fileUrl);
+                    const arrayBuffer = await response.arrayBuffer();
+                    
+                    // 这里应该使用SheetJS等库，但为简化仅显示消息
+                    document.getElementById('viewer').innerHTML = `
+                        <div style="text-align:center; padding:40px;">
+                            <h3>Excel文档预览</h3>
+                            <p>此预览版本仅显示第一页内容</p>
+                            <p>完整功能需要专业Excel预览库</p>
+                        </div>
+                    `;
+                } catch (error) {
+                    showError('无法加载Excel文档: ' + error.message);
+                }
+            }
+            
+            // 渲染PowerPoint文档（简化版）
+            async function renderPowerPointDocument() {
+                try {
+                    document.getElementById('viewer').innerHTML = `
+                        <div style="text-align:center; padding:40px;">
+                            <h3>PowerPoint文档预览</h3>
+                            <p>此预览版本仅显示第一页内容</p>
+                            <p>完整功能需要专业PPT预览库</p>
+                        </div>
+                    `;
+                } catch (error) {
+                    showError('无法加载PowerPoint文档: ' + error.message);
+                }
+            }
+            
+            // 渲染图片
+            async function renderImage() {
+                try {
+                    document.getElementById('viewer').innerHTML = `
+                        <div style="text-align:center; padding:20px;">
+                            <img src="${fileUrl}" alt="${fileUrl}" style="max-width:100%; max-height:80vh;">
+                        </div>
+                    `;
+                } catch (error) {
+                    showError('无法加载图片: ' + error.message);
+                }
+            }
+            
+            // 渲染文本文件
+            async function renderText() {
+                try {
+                    const response = await fetch(fileUrl);
+                    const text = await response.text();
+                    
+                    const pre = document.createElement('pre');
+                    pre.style.whiteSpace = 'pre-wrap';
+                    pre.style.fontFamily = 'monospace';
+                    pre.style.padding = '20px';
+                    pre.style.backgroundColor = '#f8f8f8';
+                    pre.style.borderRadius = '5px';
+                    pre.style.maxHeight = '70vh';
+                    pre.style.overflow = 'auto';
+                    pre.textContent = text;
+                    
+                    document.getElementById('viewer').innerHTML = '';
+                    document.getElementById('viewer').appendChild(pre);
+                } catch (error) {
+                    showError('无法加载文本文件: ' + error.message);
+                }
+            }
+            
+            // 显示错误信息
+            function showError(message) {
+                document.getElementById('viewer').innerHTML = `
+                    <div class="error">
+                        <h3>预览加载失败</h3>
+                        <p>${message}</p>
+                        <p>尝试直接<a href="${fileUrl}" target="_blank">下载文件</a></p>
+                    </div>
+                `;
+            }
+            
+            // 下载文件
+            function downloadFile() {
+                const a = document.createElement('a');
+                a.href = fileUrl;
+                a.download = '安闻集团考勤管理规定.docx';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            }
+            
+            // 初始化
+            document.addEventListener('DOMContentLoaded', renderPreview);
+        </script>
+    </body>
+    </html>
