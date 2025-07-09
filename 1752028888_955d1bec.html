@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+    <html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>预览: 安闻集团考勤管理规定.docx</title>
+        <!-- 使用HTTPS CDN -->
+        <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.4.120/build/pdf.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.17/mammoth.browser.min.js"></script>
+        <style>
+            /* [保留所有CSS样式] */
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <h1>预览: 安闻集团考勤管理规定.docx</h1>
+            </header>
+            <div class="preview-area">
+                <div id="viewer">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        <p>正在加载文档预览...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <script>
+            // 下载Base64文件的函数
+            function downloadBase64File(filename, base64) {
+                const link = document.createElement('a');
+                link.href = 'data:application/octet-stream;base64,' + base64;
+                link.download = filename;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+            
+            // 文件渲染逻辑
+            
+            document.getElementById('viewer').innerHTML = `
+                <div class="error">
+                    <h3>文件加载失败</h3>
+                    <p>[Errno 2] No such file or directory: '/files/eb6c148e-d877-4aca-83a4-f1e188a0f831/file-preview?timestamp=1752028887&nonce=d52f226630d165c116e96e72cad7709a&sign=2kx2W0CLdHWfbmChB1j7Z6_H7vGLD9AI2BtRbuKZHaQ='</p>
+                </div>
+            `;
+        
+        </script>
+    </body>
+    </html>
