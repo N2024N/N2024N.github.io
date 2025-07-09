@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>文件加载失败</title>
+            <style>
+                body { 
+                    font-family: sans-serif; 
+                    display: flex; 
+                    justify-content: center; 
+                    align-items: center; 
+                    min-height: 100vh; 
+                    background-color: #f0f2f5;
+                }
+                .error-container {
+                    max-width: 500px;
+                    padding: 30px;
+                    background: white;
+                    border-radius: 8px;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+                    text-align: center;
+                }
+                .error-icon {
+                    font-size: 3rem;
+                    color: #e53935;
+                    margin-bottom: 20px;
+                }
+                .error-details {
+                    text-align: left;
+                    background: #ffebee;
+                    padding: 15px;
+                    border-radius: 4px;
+                    margin-top: 20px;
+                    font-family: monospace;
+                    font-size: 0.9rem;
+                    overflow-x: auto;
+                }
+                pre {
+                    white-space: pre-wrap;
+                    background: #f5f5f5;
+                    padding: 10px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                }
+            </style>
+        </head>
+        <body>
+            <div class="error-container">
+                <div class="error-icon">❌</div>
+                <h2>文件加载失败</h2>
+                <p>无法加载或预览文件: 安闻集团考勤管理规定.docx</p>
+                <p><strong>错误信息:</strong> HTTPSConnectionPool(host=&#x27;app.dify.ai&#x27;, port=443): Max retries exceeded with url: /files/eb6c148e-d877-4aca-83a4-f1e188a0f831/file-preview?timestamp=1752035966&amp;nonce=8d7ae7fbf81adf7820f0f1e63a328880&amp;sign=JOxoJGRhwcW4G-UnmQMQ71bzb15PR2DtvP7lI_vfdi4= (Caused by ProxyError(&#x27;Unable to connect to proxy&#x27;, OSError(&#x27;Tunnel connection failed: 503 Service Unavailable&#x27;)))</p>
+                <div class="error-details">
+                    <p><strong>原始URL:</strong> /files/eb6c148e-d877-4aca-83a4-f1e188a0f831/file-preview?timestamp=1752035966&amp;nonce=8d7ae7fbf81adf7820f0f1e63a328880&amp;sign=JOxoJGRhwcW4G-UnmQMQ71bzb15PR2DtvP7lI_vfdi4=</p>
+                    <p><strong>修复后URL:</strong> https://app.dify.ai/files/eb6c148e-d877-4aca-83a4-f1e188a0f831/file-preview?timestamp=1752035966&amp;nonce=8d7ae7fbf81adf7820f0f1e63a328880&amp;sign=JOxoJGRhwcW4G-UnmQMQ71bzb15PR2DtvP7lI_vfdi4=</p>
+                    <p><strong>MIME类型:</strong> application/vnd.openxmlformats-officedocument.wordprocessingml.document</p>
+                </div>
+                <h3>详细错误堆栈:</h3>
+                <pre>Traceback (most recent call last):
+  File &quot;/usr/local/lib/python3.10/site-packages/urllib3/connectionpool.py&quot;, line 773, in urlopen
+    self._prepare_proxy(conn)
+  File &quot;/usr/local/lib/python3.10/site-packages/urllib3/connectionpool.py&quot;, line 1042, in _prepare_proxy
+    conn.connect()
+  File &quot;/usr/local/lib/python3.10/site-packages/urllib3/connection.py&quot;, line 721, in connect
+    self._tunnel()
+  File &quot;/usr/local/lib/python3.10/site-packages/urllib3/connection.py&quot;, line 259, in _tunnel
+    raise OSError(f&quot;Tunnel connection failed: {code} {message.strip()}&quot;)
+OSError: Tunnel connection failed: 503 Service Unavailable
+
+The above exception was the direct cause of the following exception:
+
+urllib3.exceptions.ProxyError: (&#x27;Unable to connect to proxy&#x27;, OSError(&#x27;Tunnel connection failed: 503 Service Unavailable&#x27;))
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File &quot;/usr/local/lib/python3.10/site-packages/requests/adapters.py&quot;, line 667, in send
+    resp = conn.urlopen(
+  File &quot;/usr/local/lib/python3.10/site-packages/urllib3/connectionpool.py&quot;, line 841, in urlopen
+    retries = retries.increment(
+  File &quot;/usr/local/lib/python3.10/site-packages/urllib3/util/retry.py&quot;, line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host=&#x27;app.dify.ai&#x27;, port=443): Max retries exceeded with url: /files/eb6c148e-d877-4aca-83a4-f1e188a0f831/file-preview?timestamp=1752035966&amp;nonce=8d7ae7fbf81adf7820f0f1e63a328880&amp;sign=JOxoJGRhwcW4G-UnmQMQ71bzb15PR2DtvP7lI_vfdi4= (Caused by ProxyError(&#x27;Unable to connect to proxy&#x27;, OSError(&#x27;Tunnel connection failed: 503 Service Unavailable&#x27;)))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File &quot;&lt;string&gt;&quot;, line 270, in main
+  File &quot;/usr/local/lib/python3.10/site-packages/requests/api.py&quot;, line 73, in get
+    return request(&quot;get&quot;, url, params=params, **kwargs)
+  File &quot;/usr/local/lib/python3.10/site-packages/requests/api.py&quot;, line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File &quot;/usr/local/lib/python3.10/site-packages/requests/sessions.py&quot;, line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File &quot;/usr/local/lib/python3.10/site-packages/requests/sessions.py&quot;, line 703, in send
+    r = adapter.send(request, **kwargs)
+  File &quot;/usr/local/lib/python3.10/site-packages/requests/adapters.py&quot;, line 694, in send
+    raise ProxyError(e, request=request)
+requests.exceptions.ProxyError: HTTPSConnectionPool(host=&#x27;app.dify.ai&#x27;, port=443): Max retries exceeded with url: /files/eb6c148e-d877-4aca-83a4-f1e188a0f831/file-preview?timestamp=1752035966&amp;nonce=8d7ae7fbf81adf7820f0f1e63a328880&amp;sign=JOxoJGRhwcW4G-UnmQMQ71bzb15PR2DtvP7lI_vfdi4= (Caused by ProxyError(&#x27;Unable to connect to proxy&#x27;, OSError(&#x27;Tunnel connection failed: 503 Service Unavailable&#x27;)))
+</pre>
+            </div>
+        </body>
+        </html>
