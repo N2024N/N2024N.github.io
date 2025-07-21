@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表格对比结果</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #333;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        .comparison {
+            margin-bottom: 30px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .added {
+            background-color: #e6ffe6;
+        }
+        .removed {
+            background-color: #ffe6e6;
+        }
+        .summary {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #d63384;
+        }
+    </style>
+</head>
+<body>
+    <h1>表格对比结果</h1>
+    
+    <div class="comparison">
+        <h2>新增内容</h2>
+        <table class="added">
+            <thead>
+                <tr>
+                    <th>用户</th>
+                    <th>所在部门</th>
+                    <th>最常使用场景</th>
+                    <th>答案的准确性与可执行性</th>
+                    <th>最需要改进的方面</th>
+                    <th>请简要描述一次失败案例</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>法务部</td>
+                    <td>新人入职学习</td>
+                    <td>4</td>
+                    <td>覆盖流程</td>
+                    <td>搜索合同相关 无内容显示</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>研发质量管理部</td>
+                    <td>替代问同事</td>
+                    <td>3</td>
+                    <td>覆盖更多流程</td>
+                    <td>询问：你能提供哪些规章制度的查询？ 回答内容不全面，不能正确回答我提出的问题。</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="comparison">
+        <h2>删除内容</h2>
+        <table class="removed">
+            <thead>
+                <tr>
+                    <th>用户</th>
+                    <th>所在部门</th>
+                    <th>最常使用场景</th>
+                    <th>答案的准确性与可执行性</th>
+                    <th>最需要改进的方面</th>
+                    <th>请简要描述一次失败案例</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>法务部</td>
+                    <td>新人入职学习</td>
+                    <td>4</td>
+                    <td>覆盖更多流程</td>
+                    <td>搜索合同相关 无内容显示</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>研发质量管理部</td>
+                    <td>替代问同事</td>
+                    <td>2</td>
+                    <td>覆盖更多流程</td>
+                    <td>询问：你能提供哪些规章制度的查询？ 回答内容不全面，不能正确回答我提出的问题。</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="summary">
+        <h2>差异总结</h2>
+        <p>文本差异分析结果：</p>
+        <ul>
+            <li><span class="highlight">修改内容</span>: 0 处</li>
+            <li><span class="highlight">新增内容</span>: 1 处</li>
+            <li><span class="highlight">删除内容</span>: 1 处</li>
+        </ul>
+        <p>具体差异：</p>
+        <ul>
+            <li>第一行中"最需要改进的方面"从"覆盖更多流程"改为"覆盖流程"</li>
+            <li>第二行中"答案的准确性与可执行性"从2分改为3分</li>
+        </ul>
+    </div>
+</body>
+</html>
