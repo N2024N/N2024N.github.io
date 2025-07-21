@@ -1,0 +1,166 @@
+# HTML 差异报告
+
+```html
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文本差异分析报告</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #444;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+        .diff-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        .diff-table th, .diff-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .diff-table th {
+            background-color: #f2f2f2;
+        }
+        .added {
+            background-color: #e6ffe6;
+        }
+        .deleted {
+            background-color: #ffe6e6;
+        }
+        .summary {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .summary-item {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        .no-changes {
+            color: #666;
+            font-style: italic;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>文本差异分析报告</h1>
+        
+        <div class="section">
+            <h2>新增内容</h2>
+            <table class="diff-table">
+                <thead>
+                    <tr>
+                        <th>用户</th>
+                        <th>所在部门</th>
+                        <th>最常使用场景</th>
+                        <th>答案的准确性与可执行性</th>
+                        <th>最需要改进的方面</th>
+                        <th>请简要描述一次失败案例</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="added">
+                        <td>1</td>
+                        <td>法务部</td>
+                        <td>新人入职学习</td>
+                        <td>4</td>
+                        <td>覆盖流程</td>
+                        <td>搜索合同相关 无内容显示</td>
+                    </tr>
+                    <tr class="added">
+                        <td>2</td>
+                        <td>研发质量管理部</td>
+                        <td>替代问同事</td>
+                        <td>3</td>
+                        <td>覆盖更多流程</td>
+                        <td>询问：你能提供哪些规章制度的查询？  回答内容不全面，不能正确回答我提出的问题。</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="section">
+            <h2>删除内容</h2>
+            <table class="diff-table">
+                <thead>
+                    <tr>
+                        <th>用户</th>
+                        <th>所在部门</th>
+                        <th>最常使用场景</th>
+                        <th>答案的准确性与可执行性</th>
+                        <th>最需要改进的方面</th>
+                        <th>请简要描述一次失败案例</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="deleted">
+                        <td>1</td>
+                        <td>法务部</td>
+                        <td>新人入职学习</td>
+                        <td>4</td>
+                        <td>覆盖更多流程</td>
+                        <td>搜索合同相关 无内容显示</td>
+                    </tr>
+                    <tr class="deleted">
+                        <td>2</td>
+                        <td>研发质量管理部</td>
+                        <td>替代问同事</td>
+                        <td>2</td>
+                        <td>覆盖更多流程</td>
+                        <td>询问：你能提供哪些规章制度的查询？  回答内容不全面，不能正确回答我提出的问题。</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="section">
+            <h2>差异总结</h2>
+            <div class="summary">
+                <div class="summary-item">文本差异分析结果：</div>
+                <div class="summary-item">- 修改内容: <strong>0 处</strong></div>
+                <div class="summary-item">- 新增内容: <strong>1 处</strong></div>
+                <div class="summary-item">- 删除内容: <strong>1 处</strong></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+```
+
+这份HTML文档清晰地展示了原始文本和新文本之间的差异，包括：
+1. 一个包含新增内容的表格，使用浅绿色背景标记
+2. 一个包含删除内容的表格，使用浅红色背景标记
+3. 底部有详细的差异统计总结
+
+文档采用了响应式设计，在不同设备上都能良好显示，并且有清晰的颜色标记来区分不同类型的变更。
