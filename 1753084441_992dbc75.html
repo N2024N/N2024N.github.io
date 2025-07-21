@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表格对比报告</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #333;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        .comparison {
+            margin: 30px 0;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .added {
+            background-color: #e6ffe6;
+        }
+        .removed {
+            background-color: #ffe6e6;
+            text-decoration: line-through;
+        }
+        .summary {
+            background-color: #f8f8f8;
+            padding: 15px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>表格对比分析报告</h1>
+    
+    <div class="comparison">
+        <h2>对比结果</h2>
+        
+        <div class="summary">
+            <h3>差异总结</h3>
+            <ul>
+                <li>修改内容: 0 处</li>
+                <li>新增内容: 1 处</li>
+                <li>删除内容: 1 处</li>
+            </ul>
+        </div>
+        
+        <h3>新增内容</h3>
+        <table>
+            <tr>
+                <th>用户</th>
+                <th>所在部门</th>
+                <th>最常使用场景</th>
+                <th>答案的准确性与可执行性</th>
+                <th>最需要改进的方面</th>
+                <th>请简要描述一次失败案例</th>
+            </tr>
+            <tr class="added">
+                <td>1</td>
+                <td>法务部</td>
+                <td>新人入职学习</td>
+                <td>4</td>
+                <td>覆盖流程</td>
+                <td>搜索合同相关 无内容显示</td>
+            </tr>
+            <tr class="added">
+                <td>2</td>
+                <td>研发质量管理部</td>
+                <td>替代问同事</td>
+                <td>3</td>
+                <td>覆盖更多流程</td>
+                <td>询问：你能提供哪些规章制度的查询？ 回答内容不全面，不能正确回答我提出的问题。</td>
+            </tr>
+        </table>
+        
+        <h3>删除内容</h3>
+        <table>
+            <tr>
+                <th>用户</th>
+                <th>所在部门</th>
+                <th>最常使用场景</th>
+                <th>答案的准确性与可执行性</th>
+                <th>最需要改进的方面</th>
+                <th>请简要描述一次失败案例</th>
+            </tr>
+            <tr class="removed">
+                <td>1</td>
+                <td>法务部</td>
+                <td>新人入职学习</td>
+                <td>4</td>
+                <td>覆盖更多流程</td>
+                <td>搜索合同相关 无内容显示</td>
+            </tr>
+            <tr class="removed">
+                <td>2</td>
+                <td>研发质量管理部</td>
+                <td>替代问同事</td>
+                <td>2</td>
+                <td>覆盖更多流程</td>
+                <td>询问：你能提供哪些规章制度的查询？ 回答内容不全面，不能正确回答我提出的问题。</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
